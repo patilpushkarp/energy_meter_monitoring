@@ -1,0 +1,330 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Theme Company</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+.jumbotron{
+	padding:100px;
+	background-color:#99e600;
+	font-variant:small-caps;
+}
+.foot{
+	background-color:#2d862d;
+	color:#000;
+}
+.font{
+	font-size:1.875em;
+}
+.afont{
+	font-size:1.5em;
+}
+.container-fluid {
+    padding: 60px 50px;
+}
+footer .glyphicon {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color:#ffe066 ;
+}
+ol.c {
+    list-style-type: upper-roman;
+}
+</style>
+
+<body>
+<div class="jumbotron text-center">
+  <h1>Software Components</h1>
+</div>
+
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#ardide">Arduino IDE</a></li>
+  <li><a data-toggle="tab" href="#algo">Algorithm</a></li>
+  <li><a data-toggle="tab" href="#Code">Code</a></li>
+</ul>
+
+<div class="tab-content">
+
+<div id="ardide" class="tab-pane fade in active">
+<h2 class="text-center" style="color:#000099">Arduino IDE</h2>
+<pre style="padding-left:50px;padding-top:50px;padding-right:50px;">
+Programs written using Arduino Software (IDE) are called sketches. These sketches are written in the text editor and are saved with the file extension .ino. The editor has features for cutting/pasting and for searching/replacing text. The message area gives feedback while saving and exporting and also displays errors. The console displays text output by the Arduino Software (IDE), including complete error messages and other information. The bottom righthand corner of the window displays the configured board and serial port. The toolbar buttons allow you to verify and upload programs, create, open, and save sketches, and open the serial monitor.
+
+NB: Versions of the Arduino Software (IDE) prior to 1.0 saved sketches with the extension .pde. It is possible to open these files with version 1.0, you will be prompted to save the sketch with the .ino extension on save.
+	
+
+Verify
+Checks your code for errors compiling it.
+	
+
+Upload
+Compiles your code and uploads it to the configured board. See uploading below for details.
+
+Note: If you are using an external programmer with your board, you can hold down the "shift" key on your computer when using this icon. The text will change to "Upload using Programmer"
+	
+
+New
+Creates a new sketch.
+	
+
+Open
+Presents a menu of all the sketches in your sketchbook. Clicking one will open it within the current window overwriting its content.
+
+Note: due to a bug in Java, this menu doesn't scroll; if you need to open a sketch late in the list, use the File | Sketchbook menu instead.
+	
+
+Save
+Saves your sketch.
+	
+
+Serial Monitor
+Opens the serial monitor.
+
+Additional commands are found within the five menus: File, Edit, Sketch, Tools, Help. The menus are context sensitive, which means only those items relevant to the work currently being carried out are available. 
+</pre>
+</div>
+
+<div id="algo" class="tab-pane fade">
+<h2 class="text-center" style="color:#000099">Algorithm</h2>
+<p style="padding-left:50px;padding-top:50px;padding-right:50px;">
+<ol class="c afont">
+  <li>Start</li>
+  <li>Accept the input pulse from meter</li>
+  <li>Calculate the number of units from the numbers of pulses received</li>
+  <li>Calculate the cost</li>
+  <li>Send the data to wifi module</li>
+  <li>End</li>
+</ol>
+</p>
+</div>
+
+<div id="Code" class="tab-pane fade">
+<h2 class="text-center" style="color:#000099">Code</h2>
+<pre style="padding-left:50px;padding-top:50px;padding-right:50px;">
+//meter input
+ 
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+const int  PulsePin = 8;     // the pin that the meter cal wire is attached to
+const int ledPin = 13;       // the pin that the LED is attached to
+
+int PulseCounter = 0;       // counter for the number of pulses
+int State = 0;              // current state of the pulse
+float rate = 3; 
+float units = 0; 
+float cost = 0;
+
+// website 
+
+#include<SoftwareSerial.h>
+SoftwareSerial client(7,6); //RX, TX
+String webpage="";
+int i=0,k=0;
+String readString;
+int x=0;
+boolean No_IP=false;
+String IP="";
+char temp1='0';
+
+// functions
+     
+void check4IP(int t1)
+{
+  int t2=millis();
+  while(t2+t1>millis())
+  {
+    while(client.available()>0)
+    {
+      if(client.find("WIFI GOT IP"))
+      {
+        No_IP=true;
+      }
+    }
+  }
+}
+void get_ip()
+{
+  IP="";
+  char ch=0;
+  while(1)
+  {
+    Serial.println("in while of get_ip");
+    client.println("AT+CIFSR");
+    while(client.available()>0)
+    {
+      if(client.find("STAIP,"))
+      {
+        delay(3000);
+        Serial.print("IP Address:");
+        while(client.available()>0)
+        {
+          ch=client.read();
+          if(ch=='+')
+          break;
+          IP+=ch;
+        }
+      }
+      if(ch=='+')
+      break;
+    }
+    if(ch=='+')
+    break;
+    delay(1000);
+  }
+  Serial.print(IP);
+  Serial.print("Port:");
+  Serial.println(80);
+}
+
+void connect_wifi(String cmd, int t)
+{
+  int temp=0,i=0;
+  while(1)
+  {
+    Serial.println(cmd);
+    client.println(cmd); 
+    while(client.available())
+    {
+      if(client.find("OK"))
+      i=8;
+    }
+    delay(t);
+    if(i>5)
+    break;
+    i++;
+  }
+  if(i==8)
+  Serial.println("OK");
+  else
+  Serial.println("Error");
+}
+
+void wifi_init()
+{
+      connect_wifi("AT",1500);
+      connect_wifi("AT+CWMODE=3",100);
+      connect_wifi("AT+CWQAP",100);  
+      connect_wifi("AT+RST",5000);
+      check4IP(5000);
+      if(!No_IP)
+      {
+        Serial.println("Connecting Wifi....");
+        connect_wifi("AT+CWJAP=\"Error 109 : Network Unavailable\",\"DJramrajassa\"",7000);         //provide your WiFi username and password here
+      }
+      else
+        {
+        }
+      Serial.println("Wifi Connected"); 
+      get_ip();
+      connect_wifi("AT+CIPMUX=1",100);
+      connect_wifi("AT+CIPSERVER=1,80",100);
+}
+void sendwebdata(String webPage)
+{
+    int ii=0;
+     while(1)
+     {
+      unsigned int l=webPage.length();
+      Serial.print("AT+CIPSEND=0,");
+      client.print("AT+CIPSEND=0,");
+      Serial.println(l+2);
+      client.println(l+2);
+      delay(100);
+      Serial.println(webPage);
+      client.println(webPage);
+      while(client.available())
+      {
+        if(client.find("OK"))
+        {
+          ii=11;
+          break;
+        }
+      }
+      if(ii==11)
+      break;
+      delay(100);
+     }
+}
+
+void setup() {
+   // meter setup
+   pinMode(PulsePin, INPUT);
+   pinMode(ledPin, OUTPUT);
+   lcd.begin(16, 2);
+   lcd.print("no. of pulses=");
+   Serial.begin(115200);
+
+   //website setup
+   client.begin(115200);
+   wifi_init();
+   Serial.println("System Ready..");
+   
+}
+
+void loop() {
+  //meter
+  lcd.setCursor(14, 0);
+  State = digitalRead(PulsePin);
+  digitalWrite(ledPin,State);
+   if (State == LOW) {
+    PulseCounter++;
+    units = PulseCounter/5;
+    cost = rate*units;
+    lcd.print(PulseCounter);
+    delay(200);    
+   }
+  
+  //website
+  k=0;
+  //Serial.println("Please Refresh your Page");
+  while(k<1)
+  {
+    k++;
+   while(client.available())
+   {
+    if(client.find("0,CONNECT"))
+    {
+      Serial.println("Start Printing");
+      Send();
+      Serial.println("Done Printing");
+      delay(1000);
+    }
+  }
+  delay(1);
+ } 
+}
+
+void Send()
+{
+      webpage = "Welcome to your energy meter reading";
+      sendwebdata(webpage);
+      String unitcount=String(units);
+      webpage = "No of units = " + unitcount;
+      sendwebdata(webpage);
+      String cost1=String(cost);
+      webpage = "Total Bill = " + cost1;
+      sendwebdata(webpage);
+      delay(1000);
+     
+     client.println("AT+CIPCLOSE=0"); 
+}
+</pre>
+
+</div>
+
+<footer class="container-fluid text-center foot">
+  <a href="#ardide" title="To Top">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a>
+  <p class="font">Electronics Workshop</p>
+</footer>
+
+</div>
+</body>
+</html>
