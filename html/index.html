@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>First Page</title>
+    <meta charset="utf-8">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+<style>
+.capitalize{
+	text-transform: capitalize;
+	font-variant: small-caps;
+}
+
+.jumbotron{
+	color:#ffff4d;
+	 padding: 100px 25px;
+	 background:url('energy.jpg');
+	 background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.bg-cl{
+	background-color:#e6ffe6
+}
+
+.color{
+	color:#000099;
+	font-family:"Geo Regular";
+}
+.container-fluid {
+    padding: 60px 50px;
+}
+
+.points{
+	list-style-type: disc;
+}
+.intro{
+ background-color:#80ccff;
+}
+.need{
+ background-color:#99ddff;
+}
+.features{
+ background-color:#adebeb;
+}
+.meter{
+ background-color:#80ffaa;
+}
+.components{
+ background-color:#4dff88;
+}
+.members{
+ background-color:#5cd65c;
+}
+
+.logo {
+      font-size: 200px;
+	color:#cc0000;
+ }
+
+.log{
+	font-size: 100px;
+	color:#cc0000;
+}
+
+.person {
+      border: 10px solid transparent;
+      margin-bottom: 25px;
+      width: 80%;
+      height: 80%;
+}
+
+.person:hover {
+      border-color: #ff9999;
+ }
+
+.navbar {
+    margin-bottom: 0;
+    background-color:#ffe066 ;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: #000099 !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #cc0000 !important;
+    background-color: #fff !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+
+footer .glyphicon {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color:#ffe066 ;
+}
+
+.foot{
+	background-color:#2d862d;
+	color:#000;
+}
+
+.font{
+	font-size:1.875em;
+}
+
+</style>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<div class="jumbotron text-center">
+  <h1 class="color">ENERGY METER MONITORING</h1>
+  <p><em>Working Smarter</em></p>
+  <p class="capitalize">Live Monitoring of Energy Consumption<p>
+</div>
+
+<div id="Intro" class="container-fluid intro">
+  <h2 class="color">Introduction</h2>
+  <p>
+Since the invention of the electrical energy, electrical energy meters have been created to keep a tap on the consumption of the electrical energy by industries and residential areas. Authorities were setup to keep the track of the energy consumption by the consumers. They employed people to get the photographs of the energy meter reading as a proof to the consumer that they are charging the later proportionate to the electrical energy consumed by them.</p>
+<p>These meters were analog in nature i.e. it used to change the readings of the meter continuously. These meters, therefore, used to consume a lot of energy which further added to the cost of the energy. The meters were not efficient as much as the new new meters are. New technologies could only decrease the energy used by the meter but not substantially. With the advancement in the technology digital meters were introduced which are fast and more efficient than the analog meters. The problems arose when the number of industries and residential increased to accommodate the population and the authorities which used to keep a track on the energy consumption have to employed more number of people to get the photographs of the meter reading, thus increasing the labor cost. The process also lead to the delay in the acquisition of data for processing and further delay in providing that data to user. So in this project we made an attempt to to reduce the labor and fast data acquisition with the help of Internet of Things.	
+  </p>
+</div>
+
+<div id="Need" class="container-fluid need">
+<div class="col-sm-8">  
+  <h2 class="color">Why Do We Need Smart Meter ?</h2>
+  <ul>
+	<li><h4>Reduce the labour work and cost.</h4></li>
+	<li><h4>Ease the billing process.</h4></li>
+	<li><h4>Keeping a track on the energy consumption and thereby using the data received to use electricity efficiently.</h4></li>
+  </ul>
+</div>
+<div class="col-sm-4">
+	<span class="glyphicon glyphicon-hourglass logo"></span>
+</div>
+</div>
+
+<div id="Features" class="container-fluid features">
+<div class="col-sm-4">
+	<span class="glyphicon glyphicon-menu-hamburger logo"></span>
+</div>
+<div>
+  <h2 class="color">Features</h2>
+  <ul>
+	<li><h4>IoT interfacing</h4></li>
+	<li><h4>Real live monitoring of consumed units of electricity</h4></li>
+	<li><h4>Automatic billing</h4></li>
+</div>
+</div>
+
+<div class="container-fluid text-center meter">
+<h3 class="color">Meter Read</h3>
+<br> <br>
+<a href="http://192.168.43.246">METER READING</a>
+</div>
+
+<div id="Components" class="container-fluid text-center components">
+  <h2 class="color">Components</h2>
+  <br><br>
+  <div>
+	 <div class="col-sm-6">
+		<span class="glyphicon glyphicon-wrench log"></span>
+		<br><br>
+		<a href="hardcomp.htm" style="font-size:1.5em"><strong>Hardware</strong></a>
+	</div>
+	<div class="col-sm-6">
+		<span class="glyphicon glyphicon-pencil log"></span>
+		<br><br>
+		<a href="softcomp.htm" style="font-size:1.5em"><strong>Software</strong></a>
+	</div>
+  </div>
+</div>
+
+ <div id="Members" class="container-fluid text-center members">
+  <h3 class="color">Members</h3>
+  <p><em>We innovate</em></p>
+  <br>
+    <div class="col-sm-3">
+      <p><strong>Jay Sangtani</strong></p><br>
+      <img src="jay.jpg" class="img-circle person" alt="JAY">
+    </div>
+    <div class="col-sm-3">
+      <p><strong>Gaurav Jumde</strong></p><br>
+      <img src="gaurav.jpg" class="img-circle person" alt="GAURAV">
+    </div>
+    <div class="col-sm-3">
+      <p><strong>Pushkar Patil</strong></p><br>
+      <img src="pushkarp.jpg" class="img-circle person" alt="PUSHKAR">
+    </div>
+    <div class="col-sm-3">
+      <p><strong>Sagar Mahajan</strong></p><br>
+      <img src="sagar.jpg" class="img-circle person" alt="SAGAR">
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#myPage">Home</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#Intro">Intro</a></li>
+        <li><a href="#Need">Need</a></li>
+        <li><a href="#Features">Features</a></li>
+        <li><a href="#Components">Components</a></li>
+        <li><a href="#Members">Members</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<footer class="container-fluid text-center foot">
+  <a href="#myPage" title="To Top">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a>
+  <p class="font">Electronics Workshop</p>
+</footer>
+
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+  
+  $(window).scroll(function() {
+    $(".slideanim").each(function(){
+      var pos = $(this).offset().top;
+
+      var winTop = $(window).scrollTop();
+        if (pos < winTop + 600) {
+          $(this).addClass("slide");
+        }
+    });
+  });
+})
+</script>
+</body>
+</html>
+
